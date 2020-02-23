@@ -1,0 +1,47 @@
+# Do not change tags in here without changing every other reference to them.
+# Do not change tags in here without changing every other reference to them.
+# If adding new groups or ideas, make sure they are unique.
+
+### Nation specific idea groups
+
+MAS_ideas = {
+	start = {
+		leader_naval_manuever = 1
+		sailor_maintenance_modifer = -0.1
+	}
+	bonus = {
+		leader_naval_fire = 1
+		leader_naval_shock = 1
+	}
+	
+	trigger = {
+		tag = MAS
+	}
+	
+	free = yes
+	
+	mas_hinalliwood = {
+		global_unrest = -2
+	}
+	mas_moluccan_expansion = {
+		colonists = 1
+	}
+	mas_legacy_of_panai = {
+		naval_morale = 0.15
+	}
+	mas_riches_of_the_visayas = {
+		development_cost = -0.2
+	}
+	mas_masters_of_maritime_warfare = {
+		sailors_recovery_speed = 0.1
+		navy_tradition_decay = -0.05
+	}
+	mas_articles_of_the_confederation = {
+		prestige = 1
+		republican_tradition = 1
+	}
+	mas_expand_the_shipbuilding_sector = {
+		ship_durability = 0.05
+		naval_maintenance_modifier = -0.1
+	}
+}
