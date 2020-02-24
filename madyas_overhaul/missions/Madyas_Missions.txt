@@ -20,7 +20,7 @@ madyas_missions_1 = {
 			owns = 4352 # Cebu
 		}
 		effect = {
-			add_sailors = 1
+			add_sailors = 1.00
 			add_manpower = 5
 			add_permanent_claim = 656 # Manila
 			654 = { # Samar
@@ -360,8 +360,112 @@ madyas_missions_2 = {
 	}
 	has_country_shield = yes
 
+	settle_papua {
+		icon = mission_clear_the_delta
+		required_missions = {} # None
+		generic = no
+		position = 1
+		provinces_to_highlight = {
+			OR = {
+				area = papua_area # Papuan Peninsula
+				area = vogelkop_area # Vogelkop Peninsula
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+				value = 1
+				OR = {
+					area = papua_area # Papuan Peninsula
+					area = vogelkop_area # Vogelkop Peninsula
+				}
+			}
+		}
+		effect = {
+			# Papuan acceptance event
+			add_accepted_culture = papuan
+			timor_area = { # Timor
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism	
+			}
+		}
+	}
+	colonize_australia {
+		icon = mission_colonise_brazil
+		required_missions = {
+			settle_papua
+		}
+		generic = no
+		position = 2
+		provinces_to_highlight = {
+			region = australia_region # Australia
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+				value = 5
+				region = australia_region # Australia
+			}
+		}
+		effect = {
+			# Settler rush event
+			add_prestige = 10
+			add_treasury = 100
+		}
+	}
+	expand_new_zealand {
+		icon = mission_retake_ceuta
+		required_missions = {
+			colonize_australia
+		}
+		generic = no
+		position = 3
+		provinces_to_highlight = {
+			area = te_ika_a_maui_area # Te Ika a Maui
+			area = te_waipounamu_area # Te Waiponamu
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+				value = 1
+				OR = {
+					area = te_ika_a_maui_area # Te Ika a Maui
+					area = te_waipounamu_area # Te Waiponamu
+				}
+			}
+		}
+		effect = {
+			# Settler rush event
+			add_prestige = 10
+			add_treasury = 100
+		}
+	}
+	establish_foothold_california {
+		icon = mission_caribbean_cn
+		required_missions = {
+			discover_america_madyas
+		}
+		generic = no
+		position = 4
+		provinces_to_highlight = {
+			region = california_region # California
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+				value = 1
+				region = california_region # California
+			}
+		}
+		effect = {
+			# Settler rush event
+			add_prestige = 10
+			add_treasury = 100
+		}
+	}
 	colonize_islands {
-		icon = mission_junk_boat
+		icon = mission_dominate_persian_gulf
 		required_missions = {
 			unite_philippines
 		}
@@ -388,6 +492,14 @@ madyas_missions_2 = {
 						area = sulawesi_area # North Sulawesi
 					}
 				}
+			}
+		}
+		effect = {
+			# Trade bonus
+			moluccas_region = { # Moluccas
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism	
 			}
 		}
 	}
