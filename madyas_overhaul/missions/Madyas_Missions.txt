@@ -9,7 +9,7 @@ madyas_missions_1 = {
 	has_country_shield = yes
 
 	ocuppy_cebu {
-		icon = mission_early_game_buildings
+		icon = mission_end_arakan_piracy
 		required_missions = {} # None
 		generic = no
 		position = 1
@@ -54,6 +54,7 @@ madyas_missions_1 = {
 		effect = {
 			add_stability = 1
 			set_capital = 656 # Manila
+			# Event on Manila
 			656 = {
 				add_building = fort_15th
 				add_base_tax = 2
@@ -142,6 +143,7 @@ madyas_missions_1 = {
 		effect = {
 			add_prestige = 50
 			set_government_rank = 2
+			# Event on  unification of philippines
 			4354 = { # Zamboanga
 				add_core = ROOT
 				cede_province = ROOT
@@ -199,12 +201,157 @@ madyas_missions_1 = {
 				cede_province = ROOT
 				change_religion = hinduism
 			}
+			west_java_area = { # West Java
+				add_permanent_claim = ROOT
+			}
+			central_java_area = { # Central Java
+				add_permanent_claim = ROOT
+			}
+			east_java_area = { # East Java
+				add_permanent_claim = ROOT
+			}
+			south_sumatra_area = { # Lampung
+				add_permanent_claim = ROOT
+			}
+			central_sumatra_area = { # Riau and Minangkabau
+				add_permanent_claim = ROOT
+			}
+			north_sumatra_area = { # Aceh and Batak
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	take_indonesia {
+		icon = mission_grand_bengali_shipyards
+		required_missions = {
+			expand_into_brunei
+			colonize_islands
+		}
+		generic = no
+		position = 6
+		provinces_to_highlight = {
+			OR = {
+				province_id = 624 # Banten
+				province_id = 2687 # Pakuan
+				province_id = 629 # Demak
+				province_id = 630 # Kalapa
+				province_id = 2673 # Pasai
+				province_id = 622 # Palembang
+				province_id = 2681 # Pagarruyung
+				province_id = 620 # Siak
+				province_id = 2677 # Jambi
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				owns = 624 # Banten
+				owns = 2687 # Pakuan
+				owns = 629 # Demak
+				owns = 630 # Kalapa
+				owns = 2673 # Pasai
+				owns = 622 # Palembang
+				owns = 2681 # Pagarruyung
+				owns = 620 # Siak
+				owns = 2677 # Jambi
+			}
+		}
+		effect = {
+			# Effect that gives bonus to naval and army for X years
+			621 = { # Bengkulu
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+			623 = { # Tulangbewang
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+			add_permanent_claim = 596 # Malacca
+		}
+	}
+	the_fall_of_malacca {
+		icon = mission_recover_konkan_ports
+		required_missions = {
+			take_indonesia
+		}
+		generic = no
+		position = 7
+		provinces_to_highlight = {
+			OR = {
+				province_id = 596 # Malacca
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				596 = { # Malacca
+					owned_by = ROOT
+					is_core = ROOT
+					has_owner_religion = yes
+					has_most_province_trade_power = ROOT
+				}
+			}
+		}
+		effect = {
+			# Event that boostes trade and is malacca related
+			add_stability = 1
+			set_capital = 596 # Malacca
+			596 = {
+				center_of_trade = 3
+				add_base_tax = 3
+				add_base_production = 3
+				add_base_manpower = 3
+			}
+			north_tenasserim_area = { # North Tenasserim
+				add_permanent_claim = ROOT
+			}
+			tenasserim_area = { # Central Tenasserim
+				add_permanent_claim = ROOT
+			}
+			indo_china_region = { # Indochina
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	venture_indochina {
+		icon = mission_rice_field
+		required_missions = {
+			the_fall_of_malacca
+		}
+		generic = no
+		position = 8
+		provinces_to_highlight = {
+			OR = {
+				region = indo_china_region # Indochina
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				tag = MSA # Malaya
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+					value = 10
+					region = indo_china_region # Indochina
+				}
+			}
+		}
+		effect = {
+			add_prestige = 20
+			add_adm_power = 200
+			burma_region = { # Burma
+				add_permanent_claim = ROOT
+			}
+			xinan_region = { # Xinan
+				add_permanent_claim = ROOT
+			}
 		}
 	}
 }
 
-madyas_missions_3 = {
-	slot = 3
+madyas_missions_2 = {
+	slot = 2
 	generic = no
 	ai = yes
 	potential = {
@@ -216,7 +363,6 @@ madyas_missions_3 = {
 	colonize_islands {
 		icon = mission_junk_boat
 		required_missions = {
-			discover_eastern_polynesia
 			unite_philippines
 		}
 		generic = no
@@ -258,14 +404,19 @@ madyas_missions_3 = {
 	has_country_shield = yes
 
 	discover_eastern_polynesia {
-		icon = mission_trade_with_japan
+		icon = mission_look_west
 		required_missions = {} # None
 		generic = no
 		position = 1
-		provinces_to_highlight = {} # None
+		provinces_to_highlight = {
+			OR = {
+				area = polynesia_area # Polynesia
+				area = eastern_polynesia_area # Eastern Polynesia
+			}
+		}
 		trigger = {
 			OR = {
-				northern_polynesia_area = { # Hawaii archpelago
+				polynesia_area = { # Polynesia
 					has_discovered = ROOT
 				}
 				eastern_polynesia_area = { # Eastern Polynesia
@@ -274,7 +425,7 @@ madyas_missions_3 = {
 			}
 		}
 		effect = {
-			add_treasury = 200
+			add_prestige = 20
 			create_explorer = { tradition = 75 }
 			# Add event that gives colonial range and settlers for 20 years
 		}
