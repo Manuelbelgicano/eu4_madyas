@@ -20,11 +20,12 @@ MAS_ideas = {
 	
 	free = yes
 	
-	mas_hinalliwood = {
-		global_unrest = -2
-	}
 	mas_moluccan_expansion = {
 		colonists = 1
+		range = 0.5 
+	}
+	mas_hinalliwood = {
+		global_unrest = -2
 	}
 	mas_legacy_of_panai = {
 		naval_morale = 0.15

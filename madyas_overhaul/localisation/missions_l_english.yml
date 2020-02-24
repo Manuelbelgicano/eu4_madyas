@@ -365,3 +365,12 @@
  take_manila_desc:0 "Manila is the biggest city in the area. We must ensure that it is under our control, so that we become the greatest power in the achipelago."
  conquer_luzon_title:0 "Conquer Luzon"
  conquer_luzon_desc:0 "As Manila is now our capital, we must claim and secure the area in its entirety."
+ unite_philippines_title:0 "Unite the Philippines"
+ unite_philippines_desc:0 "Now that the Luzon and Visayas areas are under our control, it is time to assert our power in Mindanao and unite all the archpelago."
+ expand_into_brunei_title:0 "Expand into Borneo"
+ expand_into_brunei_desc:0 "The island of Borneo is full of riches and trade goods. We need to enforce our rule there to dominate trade in the Moluccas and expand into Malacca."
+ discover_eastern_polynesia_title:0 "Discover Eastern Polynesia"
+ discover_eastern_polynesia_desc:0 "It has long been said that a new continent exists east of the Moluccas. We ought to explore eastwards to monopolize and colonize those lands."
+ colonize_islands_title:0 "Colonize the islands"
+ colonize_islands_desc:0 "The Spice Islands and Sulawesi Island are full of riches. It would be a shame if we did not control them."
+

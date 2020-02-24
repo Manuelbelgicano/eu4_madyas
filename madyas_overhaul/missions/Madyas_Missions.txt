@@ -1,5 +1,5 @@
-madyas_missions = {
-	slot = 1 #upper left column
+madyas_missions_1 = {
+	slot = 1 # Upper left column
 	generic = no
 	ai = yes
 	potential = {
@@ -10,23 +10,25 @@ madyas_missions = {
 
 	ocuppy_cebu {
 		icon = mission_early_game_buildings
-		required_missions = {} #None
+		required_missions = {} # None
 		generic = no
 		position = 1
 		provinces_to_highlight = {
-			province_id = 4352
+			province_id = 4352 # Cebu
 		}
 		trigger = {
-			owns = 4352
+			owns = 4352 # Cebu
 		}
 		effect = {
-			add_permanent_claim = 656
-			654 = {
+			add_sailors = 1
+			add_manpower = 5
+			add_permanent_claim = 656 # Manila
+			654 = { # Samar
 				add_core = ROOT
 				cede_province = ROOT
 				change_religion = hinduism
 			}
-			4353 = {
+			4353 = { # Leyte
 				add_core = ROOT
 				cede_province = ROOT
 				change_religion = hinduism
@@ -41,27 +43,27 @@ madyas_missions = {
 		generic = no
 		position = 2
 		provinces_to_highlight = {
-			province_id = 656
+			province_id = 656 # Manila
 		}
 		trigger = {
-			656 = {
+			656 = { # Manila
 				is_core = MAS
 				has_owner_religion = yes
 			}
 		}
 		effect = {
 			add_stability = 1
-			set_capital = 656
+			set_capital = 656 # Manila
 			656 = {
 				add_building = fort_15th
 				add_base_tax = 2
 				add_base_production = 2
 				add_base_manpower = 2
 			}
-			southern_luzon_area = {
+			southern_luzon_area = { # Southern Luzon
 				add_permanent_claim = ROOT
 			}
-			add_permanent_claim = 2698
+			add_permanent_claim = 2698 # Pangasinan
 		}
 	}
 	conquer_luzon {
@@ -73,40 +75,208 @@ madyas_missions = {
 		position = 3
 		provinces_to_highlight = {
 			OR = {
-				area = southern_luzon_area
-				province_id = 2698
+				province_id = 2697 # Tondo
+				province_id = 4349 # Laguna
+				province_id = 4350 # Mindoro
+				province_id = 2698 # Pangasinan
 			}
 			NOT = { country_or_non_sovereign_subject_holds = ROOT }
 		}
 		trigger = {
 			AND {
-				is_core = 2697
-				is_core = 4349
-				is_core = 4350
-				is_core = 2698
+				is_core = 2697 # Tondo
+				is_core = 4349 # Laguna
+				is_core = 4350 # Mindoro
+				is_core = 2698 # Pangasinan
 			}
 		}
 		effect = {
 			create_general = { tradition = 100 }
-			luzon_area = {
+			luzon_area = { # Northern Luzon
 				add_core = ROOT
 				cede_province = ROOT
 				change_religion = hinduism	
 			}
-			2699 = {
+			2699 = { # Bikol
 				add_core = ROOT
 				cede_province = ROOT
 				change_religion = hinduism
 			}
-			west_mindanao_area = {
+			west_mindanao_area = { # West Mindanao
 				add_permanent_claim = ROOT
 			}
-			mindanao_area = {
+			mindanao_area = { # East Mindanao
 				add_permanent_claim = ROOT
 			}
-			palawan_area = {
+			palawan_area = { # Palawan
 				add_permanent_claim = ROOT
 			}
+		}
+	}
+	unite_philippines {
+		icon = mission_las_islas_filipinas
+		required_missions = {
+			conquer_luzon
+		}
+		generic = no
+		position = 4
+		provinces_to_highlight = {
+			OR = {
+				province_id = 652 # Maguindanao
+				province_id = 653 # Lanao
+				province_id = 651 # Sulu
+				province_id = 655 # Palawan
+				province_id = 2702 # Butuan
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				is_core = 652 # Maguindanao
+				is_core = 653 # Lanao
+				is_core = 651 # Sulu
+				is_core = 655 # Palawan
+				is_core = 2702 # Butuan
+			}
+		}
+		effect = {
+			add_prestige = 50
+			set_government_rank = 2
+			4354 = { # Zamboanga
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+			4356 = { # Taytay
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+			mindanao_area = { # East Mindanao
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+			brunei_area = { # Brunei
+				add_permanent_claim = ROOT
+			}
+			kutai_area = { # Kutai
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	expand_into_brunei {
+		icon = mission_portuguese_malacca
+		required_missions = {
+			unite_philippines
+		}
+		generic = no
+		position = 5
+		provinces_to_highlight = {
+			OR = {
+				area = brunei_area # Brunei
+				area = kutai_area # Kutai
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				brunei_area = { # Brunei
+					type = all
+					owned_by = ROOT
+				}
+				kutai_area = { # Kutai
+					type = all
+					owned_by = ROOT
+				}
+				
+			}
+		}
+		effect = {
+			add_accepted_culture = bornean
+			kalimantan_area = { # Kalimantan
+				add_core = ROOT
+				cede_province = ROOT
+				change_religion = hinduism
+			}
+		}
+	}
+}
+
+madyas_missions_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		NOT = { map_setup = map_setup_random }
+		tag = MAS
+	}
+	has_country_shield = yes
+
+	colonize_islands {
+		icon = mission_junk_boat
+		required_missions = {
+			discover_eastern_polynesia
+			unite_philippines
+		}
+		generic = no
+		position = 5
+		provinces_to_highlight = {
+			OR = {
+				area = spice_islands_area # Spice Islands
+				area = south_sulawesi_area # South Sulawesi
+				area = sulawesi_area # North Sulawesi
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+					value = 1
+					area = spice_islands_area # Spice Islands
+				}
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+					value = 2
+					OR = {
+						area = south_sulawesi_area # South Sulawesi
+						area = sulawesi_area # North Sulawesi
+					}
+				}
+			}
+		}
+	}
+}
+
+madyas_missions_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		NOT = { map_setup = map_setup_random }
+		tag = MAS
+	}
+	has_country_shield = yes
+
+	discover_eastern_polynesia {
+		icon = mission_trade_with_japan
+		required_missions = {} # None
+		generic = no
+		position = 1
+		provinces_to_highlight = {} # None
+		trigger = {
+			OR = {
+				northern_polynesia_area = { # Hawaii archpelago
+					has_discovered = ROOT
+				}
+				eastern_polynesia_area = { # Eastern Polynesia
+					has_discovered = ROOT
+				}
+			}
+		}
+		effect = {
+			add_treasury = 200
+			create_explorer = { tradition = 75 }
+			# Add event that gives colonial range and settlers for 20 years
 		}
 	}
 }
