@@ -348,6 +348,39 @@ madyas_missions_1 = {
 			}
 		}
 	}
+	occupy_burma {
+		icon = mission_growth_of_golcond
+		required_missions = {
+			venture_indochina
+		}
+		generic = no
+		position = 9
+		provinces_to_highlight = {
+			OR = {
+				region = burma_region # Burma
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				total_development = 900
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+					value = 10
+					region = burma_region # Burma
+				}
+			}
+		}
+		effect = {
+			add_prestige = 20
+			set_government_rank = 3
+			bengal_region = { # Bengal
+				add_permanent_claim = ROOT
+			}
+			coromandel_region = { # Coromandel
+				add_permanent_claim = ROOT
+			}
+		}
+	}
 }
 
 madyas_missions_2 = {
