@@ -213,10 +213,16 @@ madyas_missions_1 = {
 			south_sumatra_area = { # Lampung
 				add_permanent_claim = ROOT
 			}
-			central_sumatra_area = { # Riau and Minangkabau
+			central_sumatra_area = { # Riau
 				add_permanent_claim = ROOT
 			}
-			north_sumatra_area = { # Aceh and Batak
+			minangkabau_area = { # Minangkabau
+				add_permanent_claim = ROOT
+			}
+			north_sumatra_area = { # Aceh
+				add_permanent_claim = ROOT
+			}
+			batak_area = { # Batak
 				add_permanent_claim = ROOT
 			}
 		}
@@ -225,7 +231,6 @@ madyas_missions_1 = {
 		icon = mission_grand_bengali_shipyards
 		required_missions = {
 			expand_into_brunei
-			colonize_islands
 		}
 		generic = no
 		position = 6
@@ -349,7 +354,7 @@ madyas_missions_1 = {
 		}
 	}
 	occupy_burma {
-		icon = mission_growth_of_golcond
+		icon = mission_portuguese_burma
 		required_missions = {
 			venture_indochina
 		}
@@ -475,7 +480,7 @@ madyas_missions_2 = {
 		}
 	}
 	establish_foothold_california {
-		icon = mission_caribbean_cn
+		icon = mission_colonize_california
 		required_missions = {
 			discover_america_madyas
 		}
@@ -487,7 +492,7 @@ madyas_missions_2 = {
 		}
 		trigger = {
 			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
-				value = 1
+				value = 5
 				region = california_region # California
 			}
 		}
@@ -536,6 +541,80 @@ madyas_missions_2 = {
 			}
 		}
 	}
+	into_taiwan {
+		icon = mission_junk_boat
+		required_missions = {
+			colonize_islands
+		}
+		generic = no
+		position = 6
+		provinces_to_highlight = {
+			OR = {
+				area = taiwan_area # Taiwan
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with {
+					value = all
+					area = taiwan_area # Taiwan
+				}
+		}
+		effect = {
+			add_treasury = 100
+			if = {
+				NOT = {
+					accepted_culture = polynesian
+				}
+				add_accepted_culture = polynesian
+			}
+			kyushu_area = { # Southern Kyushu
+				add_permanent_claim = ROOT
+			}
+			northern_kyushu = { # Northern Kyushu
+				add_permanent_claim = ROOT
+			}
+			shikoku_area = { # Shikoku
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	southern_japan {
+		icon = mission_japanese_fort
+		required_missions = {
+			into_taiwan
+		}
+		generic = no
+		position = 7
+		provinces_to_highlight = {
+			OR = {
+				area = kyushu_area # Southern Kyushu
+				area = northern_kyushu # Northern Kyushu
+				area = shikoku_area # Shikoku
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			AND = {
+				kyushu_area = { # Southern Kyushu
+					owned_by = ROOT
+				}
+				northern_kyushu = { # Northern Kyushu
+				owned_by = ROOT
+			}
+				shikoku_area = { # Shikoku
+				owned_by = ROOT
+				}
+			}
+		}
+		effect = {
+			add_prestige = 40
+			japan_region = { # Japan
+				add_permanent_claim = ROOT
+			}
+		}
+	}
 }
 
 madyas_missions_3 = {
@@ -571,8 +650,117 @@ madyas_missions_3 = {
 		}
 		effect = {
 			add_prestige = 20
-			create_explorer = { tradition = 75 }
+			create_explorer = 70
 			# Add event that gives colonial range and settlers for 20 years
+		}
+	}
+	hawaii_archpelago {
+		icon = mission_trade_with_japan
+		required_missions = {
+			discover_eastern_polynesia
+		}
+		generic = no
+		position = 2
+		provinces_to_highlight = {
+			province_id = 1240 # Hawaii
+		}
+		trigger = {
+			1240 = { # Hawaii
+				owned_by = ROOT
+				is_city = yes
+			}
+		}
+		effect = {
+			add_accepted_culture = polynesian
+			1240 = { # Hawaii
+				add_base_tax = 1
+				add_base_production = 1
+				add_base_manpower = 3
+				add_center_of_trade_level = 1
+				change_trade_goods = naval_supplies
+			}
+		}
+	}
+	discover_america_madyas {
+		icon = mission_caribbean_cn
+		required_missions = {
+			hawaii_archpelago
+		}
+		generic = no
+		position = 3
+		provinces_to_highlight = {
+			OR = {
+				region = california_region # California
+				region = cascadia_region # Cascadia
+				region = mexico_region # Mexico
+				region = central_america_region # Central America
+				region = colombia_region # Colombia
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			OR = {
+				north_america_superregion = { # North America
+					num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+						value = 1
+						is_city = yes
+					}
+				}
+				central_america_superregion = { # Central America
+					num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+						value = 1
+						is_city = yes
+					}
+				}
+			}
+		}
+		effect = {
+			# Settler rush event
+			add_prestige = 10
+			add_treasury = 100
+			jalisco_area = { # Jalisco
+				add_permanent_claim = ROOT
+			}
+			tierra_caliente_area = { # Tierra Caliente
+				add_permanent_claim = ROOT
+			}
+			mixteca_area = { # Mixteca
+				add_permanent_claim = ROOT
+			}
+			oaxaca_area = { # Oaxaca
+				add_permanent_claim = ROOT
+			}
+			chiapas_area = { # Chiapas
+				add_permanent_claim = ROOT
+			}
+		}
+	}
+	conquer_mexico {
+		icon = mission_mayan_conquest
+		required_missions = {
+			discover_america_madyas
+		}
+		generic = no
+		position = 4
+		provinces_to_highlight = {
+			AND = {
+				region = mexico_region # Mexico
+				is_city = yes
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			mexico_region = { # Mexico
+				type = all
+				OR = {
+					is_empty = yes
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+			}
+		}
+		effect = {
+			add_stability = 1
+			add_treasury = 800
 		}
 	}
 }
